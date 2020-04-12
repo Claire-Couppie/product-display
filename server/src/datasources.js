@@ -14,6 +14,7 @@ class ProductDatabase extends SQLDataSource {
       .select("*")
       .from("products")
       .where('id', id)
+      .first()
   }
 }
  

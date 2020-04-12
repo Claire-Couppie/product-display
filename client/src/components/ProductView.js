@@ -40,10 +40,10 @@ export default ({title, description}) => {
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h3">
-          {title}
+          {data.product.title}
         </Typography>
         <Typography>
-          {description}
+          {data.product.description}
         </Typography>
       </CardContent>
     </Card>
