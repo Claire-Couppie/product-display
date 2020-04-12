@@ -5,17 +5,21 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 import List from './components/List';
+import ProductView from './components/ProductView';
 
 function App() {
   return (
   <Router>
     <div>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <List />
+        </Route>
+        <Route path="/view/:id">
+          <ProductView />
         </Route>
       </Switch>
     </div>

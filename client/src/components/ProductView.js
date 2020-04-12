@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
+import { useParams } from "react-router-dom";
+import { useQuery } from '@apollo/react-hooks';
+import gql from "graphql-tag";
 
 const useStyles = makeStyles({
   root: {
@@ -16,8 +17,26 @@ const useStyles = makeStyles({
   },
 });
 
-export default ({id, title, description}) => {
+const GET_PRODUCT = gql`
+  query Product($productId: String!) {
+    product(id: $productId) {
+    id
+    title
+    description
+  }
+}`
+
+export default ({title, description}) => {
   const classes = useStyles();
+  const { id } = useParams();
+  const { data, loading, error } = useQuery(GET_PRODUCT, {
+    variables: { productId: id },
+  });
+
+console.log(data)
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error</p>;
 
   return (
     <Card className={classes.root}>
@@ -29,11 +48,6 @@ export default ({id, title, description}) => {
           {description}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" color="primary"  href={`/view/${id}`}>
-          View
-        </Button>
-      </CardActions>
     </Card>
   );
 }

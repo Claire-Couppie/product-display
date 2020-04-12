@@ -10,6 +10,7 @@ const typeDefs = gql`
 
   type Query {
     products: [Product]
+    product(id: String!): Product
   }
 `;
 

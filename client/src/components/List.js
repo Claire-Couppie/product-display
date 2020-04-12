@@ -20,6 +20,6 @@ export default () => {
   if (!data.products || !data.products.length) return <p>No product</p>;
 
   return data.products.map((product) => {
-    return <ProductCard key={product.id} title={product.title} description={product.description} />;
+    return <ProductCard key={product.id} id={product.id} title={product.title} description={product.description} />;
   });
 }
